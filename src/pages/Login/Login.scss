@@ -1,0 +1,57 @@
+.login-section {
+  // padding: 10rem;
+  display: flex;
+  // align-items: center;
+  height: 100%;
+
+  .login-section__left, .login-section__right {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5rem;
+    flex: 1;
+    align-self: center;
+    height: 100%;
+  }
+
+  .login-section__left {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .logo {
+      position: absolute;
+      top: 0;
+      margin: 10rem;
+    }
+  }
+
+  .login-section__right {
+    display: flex;
+    justify-content: center;
+    .login-section__right-text-section {
+      margin: 1rem 0;
+      .title {
+        color: #213F7D;
+        margin: .7rem 0;
+      }
+      .subtext {
+        font-size: 2rem;
+        color:#545F7D;
+      }
+    }
+
+    .form {
+      width: 85%;
+      .forgot-password-link {
+        margin-bottom: 2rem;
+        p {
+          font-family: 'Avenir-Medium';
+          text-transform: uppercase;
+          letter-spacing: .2rem;
+          color: #39CDCC;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

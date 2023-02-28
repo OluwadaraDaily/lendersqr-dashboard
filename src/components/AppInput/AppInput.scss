@@ -1,0 +1,17 @@
+.app-input-container {
+  margin: 1.5rem 0;
+  .input {
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    width: 100%;
+    border: 1.5px solid #ccc;
+    border-radius: .5rem;
+    
+    &::placeholder {
+      font-family: 'Avenir-Regular';
+      color: #545F7D;
+      font-size: 1.4rem;
+      opacity: .5;
+    }
+  }
+
+}
