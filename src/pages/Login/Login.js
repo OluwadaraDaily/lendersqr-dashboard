@@ -3,10 +3,14 @@ import fullLogo from '../../images/logo.svg'
 import loginImage from '../../images/login-img.png'
 import AppInput from '../../components/AppInput/AppInput'
 import Button from '../../components/Button/Button'
+import { useNavigate } from 'react-router-dom'
+
 
 function Login() {
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/dashboard/users")
   }
   return (
     <div className='login-section'>
