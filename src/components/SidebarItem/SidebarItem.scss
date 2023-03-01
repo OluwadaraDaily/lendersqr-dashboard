@@ -1,0 +1,37 @@
+.sidebar-item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-right: 0;
+  gap: .5rem;
+  padding: 1rem 0;
+  padding-left: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  &.active {
+    background-color: rgba(57, 205, 204, 0.1);
+    border-left: 2px solid #39CDCC;
+    p.text {
+      color: #545F7D;
+      opacity: 1;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+
+  p.text {
+    color: #545F7D;
+    opacity: .5;
+  }
+
+  img {
+    opacity: .5;
+  }
+}
+
+.sidebar-item:hover {
+  background-color: #fcfcfc;
+
+}
