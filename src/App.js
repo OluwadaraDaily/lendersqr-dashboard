@@ -2,7 +2,8 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 import AuthLayout from './layouts/AuthLayout/AuthLayout';
 import DashboardLayout from './layouts/DashboardLayout/DashboardLayout';
 import Login from './pages/Login/Login';
-import Users from './pages/Dashboard/Users/Users';
+import AllUsers from './pages/Dashboard/AllUsers/AllUsers';
+import User from './pages/Dashboard/User/User';
 
 
 const router = createBrowserRouter(
@@ -12,7 +13,8 @@ const router = createBrowserRouter(
         <Route index element={<Login/>} />
       </Route>
       <Route path="/dashboard" element={<DashboardLayout/>}>
-        <Route path='users' element={<Users/>}/>
+        <Route path='users' element={<AllUsers/>}/>
+        <Route path='users/:id' element={<User/>}/>
       </Route>
     </Route>
   )
