@@ -17,7 +17,7 @@ function Header() {
         <AppInput placeholder='Search for anything' />
       </div>
       <nav className="nav-items">
-        <a href="#">Docs</a>
+        <NavLink to="/">Docs</NavLink>
         <i className='notification-bell'>{ notificationVector }</i>
         <ProfileItem/>
       </nav>
