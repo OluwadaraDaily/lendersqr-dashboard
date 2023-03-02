@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTable } from 'react-table'
 import { COLUMNS } from '../../helpers/table/columns'
 import { useMemo } from 'react'
 import './Table.scss'
-import { BsFilter, BsEye } from "react-icons/bs";
-import { BiUserX } from "react-icons/bi";
+import { BsFilter } from "react-icons/bs";
 import { SlOptionsVertical } from "react-icons/sl";
 import viewDetailsImg from '../../images/eye.svg'
 import blacklistUserImg from '../../images/delete-user.svg'
@@ -22,21 +21,19 @@ function Table({ tableData = [], handleViewDetails }) {
   const { getTableProps, getTableBodyProps, rows, headerGroups, prepareRow } = tableInstance
   const filterIcon = React.createElement(BsFilter)
   const moreOptions = React.createElement(SlOptionsVertical)
-  const eyeIcon = React.createElement(BsEye)
-  const blacklistUserIcon = React.createElement(BiUserX)
 
-  const setInitialState = () => {
+  const setInitialState = useCallback(() => {
     for(let i = 0; i <= tableData.length; i++) {
       setMoreOptionsStatus((prevState) => {
         prevState[i] = false
         return {...prevState}
       })
     }
-  }
+  }, [tableData])
 
   useEffect(() => {
     setInitialState()
-  }, [])
+  }, [setInitialState])
   
   const handleMoreOptionsOnClick = (index) => {
     setInitialState()
