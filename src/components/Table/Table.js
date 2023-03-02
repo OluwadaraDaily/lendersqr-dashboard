@@ -1,167 +1,97 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
+import React, { useEffect, useState } from 'react'
+import { useTable } from 'react-table'
+import { COLUMNS } from '../../helpers/table/columns'
+import { useMemo } from 'react'
+import './Table.scss'
+import { BsFilter, BsEye } from "react-icons/bs";
+import { BiUserX } from "react-icons/bi";
+import { SlOptionsVertical } from "react-icons/sl";
+import viewDetailsImg from '../../images/eye.svg'
+import blacklistUserImg from '../../images/delete-user.svg'
+import activateUserImg from '../../images/approve-user.svg'
 
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
+function Table({ tableData = [], handleViewDetails }) {
+  const [moreOptionsStatus, setMoreOptionsStatus] = useState({})
+  const columns = useMemo(() => COLUMNS, [])
+  const data = useMemo(() => tableData, [tableData])
+  const tableInstance = useTable({
+    columns,
+    data
+  })
 
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
+  const { getTableProps, getTableBodyProps, rows, headerGroups, prepareRow } = tableInstance
+  const filterIcon = React.createElement(BsFilter)
+  const moreOptions = React.createElement(SlOptionsVertical)
+  const eyeIcon = React.createElement(BsEye)
+  const blacklistUserIcon = React.createElement(BiUserX)
 
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
+  const setInitialState = () => {
+    for(let i = 0; i <= tableData.length; i++) {
+      setMoreOptionsStatus((prevState) => {
+        prevState[i] = false
+        return {...prevState}
+      })
+    }
+  }
 
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
-
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
-
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
-
-export default function CustomPaginationActionsTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  useEffect(() => {
+    setInitialState()
+  }, [])
+  
+  const handleMoreOptionsOnClick = (index) => {
+    setInitialState()
+    setMoreOptionsStatus((prevState) => {
+      prevState[index] = true
+      return {
+        ...prevState
+      }
+    })
+  }
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.calories}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.fat}
-              </TableCell>
-            </TableRow>
-          ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
-  );
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')} <span className='filter-icon'><i>{filterIcon}</i></span></th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row, index) => {
+          prepareRow(row)
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              })}
+              <td className='more-options' onClick={() => handleMoreOptionsOnClick(index)}>
+                <i>{moreOptions}</i>
+                {moreOptionsStatus[index] &&
+                  <div className="more-options-menu">
+                    <div className='more-options__menu-item' onClick={() => handleViewDetails(row.cells[0].value)}>
+                      <img src={viewDetailsImg} alt="eye icon" height={15}/>
+                      <p>View Details</p>
+                    </div>
+                    <div className='more-options__menu-item'>
+                      <img src={blacklistUserImg} alt="blacklist user icon" height={15} />
+                      <p>Blacklist User</p>
+                    </div>
+                    <div className='more-options__menu-item'>
+                      <img src={activateUserImg} alt="activate user icon" height={15} />
+                      <p>Activate User</p>
+                    </div>
+                  </div>
+                }
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  )
 }
+
+export default Table

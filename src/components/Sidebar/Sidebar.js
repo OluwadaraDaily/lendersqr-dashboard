@@ -44,8 +44,9 @@ function Sidebar() {
       <div className="sidebar-items">
         <div className="sidebar-items-section">
           <p className="title">Customers</p>
-          {customerSidebarItems.map((item) => (
+          {customerSidebarItems.map((item, index) => (
             <SidebarItem
+              key={index}
               itemName={item.name}
               imageName={item.imageName}
               to={item.to ? item.to : '*'}
@@ -54,8 +55,9 @@ function Sidebar() {
         </div>
         <div className="sidebar-items-section">
           <p className="title">Businesses</p>
-          {businessSidebarItems.map((item) => (
+          {businessSidebarItems.map((item, index) => (
             <SidebarItem
+              key={index}
               itemName={item.name}
               imageName={item.imageName}
             />
@@ -63,8 +65,9 @@ function Sidebar() {
         </div>
         <div className="sidebar-items-section">
           <p className="title">Settings</p>
-          {settingsSidebarItems.map((item) => (
+          {settingsSidebarItems.map((item, index) => (
             <SidebarItem
+              key={index}
               itemName={item.name}
               imageName={item.imageName}
             />
