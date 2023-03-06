@@ -62,14 +62,12 @@ function Table({ tableData = [], handleViewDetails }) {
   }, [])
 
   useEffect(() => {
-    console.log('initialPageState =>', initialPageState)
     for(const i of pageNumbersArray) {
       initialPageState[i] = false
     }
     setActivePage(initialPageState)
     setActivePage(prevState => {
       prevState = prevState || {}
-      console.log('PREV STATE =>', prevState)
       prevState[Number(pageIndex) + 1] = true
       return {...prevState}
     })
