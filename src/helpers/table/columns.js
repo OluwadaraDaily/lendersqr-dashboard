@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 export const COLUMNS = [
   {
     Header: 'Id',
@@ -21,6 +23,7 @@ export const COLUMNS = [
   },
   {
     Header: 'Date Joined',
-    accessor: "lastActiveDate"
+    accessor: "lastActiveDate",
+    Cell: ({ value }) => { return format(new Date(value), 'MMM ii, yyyy p') },
   },
 ]

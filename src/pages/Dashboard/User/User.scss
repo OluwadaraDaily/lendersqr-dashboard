@@ -1,0 +1,199 @@
+h1.title {
+  font-family: 'Work Sans';
+  font-weight: 400;
+  font-size: 2.4rem;
+  color: #213F7D;
+}
+
+.user-container {
+  width: 90%;
+  margin: 0 auto;
+  font-family: 'Work Sans';
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  .back-to-users {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    i {
+      font-size: 2rem;
+      color: #545F7D;
+      svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .back-to-users__text {
+      font-size: 1rem;
+      color: #545F7D;
+    }
+  }
+
+  .title-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    h1.title {
+      font-family: 'Work Sans';
+      font-weight: 400;
+      font-size: 2.4rem;
+      color: #213F7D;
+    }
+    .action-btns {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      button.btn {
+        font-family: 'Work Sans';
+        font-size: 1.2rem;
+        padding: 1rem;
+        text-transform: uppercase;
+        border-radius: .5rem;
+      }
+      .blacklist-btn {
+        color: #E4033B;
+        border: 1px solid #E4033B;
+      }
+      .activate-btn {
+        color: #39CDCC;
+        border: 1px solid #39CDCC;
+      }
+    }
+  }
+
+  .user-bio-tabs-section {
+    background-color: #fff;
+    padding: 2rem 2rem .5rem 2rem;
+    border-radius: .3rem;
+    .bio-section {
+      padding-bottom: 5rem;
+      display: flex;
+      gap: 2rem;
+      .name-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .image-holder {
+          height: 8rem;
+          width: 8rem;
+          background-color: #dbe0ea;
+          position: relative;
+          border-radius: 50%;
+
+          .profile-img {
+            border-radius: 50%;
+          }
+        }
+        .name-and-id {
+          h1.name {
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+          }
+          p.id {
+            font-size: 1rem;
+            color: #545F7D;
+          }
+        }
+      }
+      .users-tier {
+        padding: 0 2rem;
+        border-left: 1px solid rgba(84, 95, 125, .5);
+        border-right: 1px solid rgba(84, 95, 125, .5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .8rem;
+        p.text {
+          color: #545F7D;
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+      }
+      .account-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p.account-balance {
+          font-size: 1.8rem;
+          color: #213F7D;
+          font-weight: 400;
+          margin-bottom: .5rem;
+        }
+        p.account-info {
+          color: rgba(33, 63, 125, .7);
+          font-size: 1rem;
+        }
+      }
+    }
+    box-sizing: content-box;
+    
+    .tabs-section {
+      .tabs-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        li {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: #000;
+          a {
+            padding: 0 1.5rem;
+            text-decoration: none;
+            color: inherit;
+          }
+          a.active {
+            color:#39CDCC;
+            border-bottom: 2px solid #39CDCC;
+            padding-bottom: .5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .user-details {
+    background-color: #fff;
+    padding: 1.5rem 2.5rem;
+    border-radius: .5rem;
+    -webkit-box-shadow: 6px -1px 42px -8px rgba(240,240,240,1);
+    -moz-box-shadow: 6px -1px 42px -8px rgba(240,240,240,1);
+    box-shadow: 6px -1px 42px -8px rgba(240,240,240,1);
+    
+    .user-details-section {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(33, 63, 125, .2);
+      h1.title {
+        font-size: 1.4rem;
+        color:#213F7D;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        .info-grid__info {
+          p.title {
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: #545F7D;
+            font-weight: 400;
+            margin-bottom: .5rem;
+          }
+          p.value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #545F7D;
+          }
+        }
+      }
+    }
+  }
+}
