@@ -32,7 +32,6 @@ function Table({ tableData = [], handleViewDetails }) {
     canNextPage,
     canPreviousPage,
     previousPage,
-    pageOptions,
     setPageSize,
     state,
     gotoPage,
