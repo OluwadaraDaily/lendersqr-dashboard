@@ -17,6 +17,13 @@
       -webkit-box-shadow: inset 10px 0px 16px -10px rgba(207,207,207,1);
       -moz-box-shadow: inset 10px 0px 16px -10px rgba(207,207,207,1);
       box-shadow: inset 10px 0px 16px -10px rgba(207,207,207,1);
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      padding-bottom: 5rem;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 }

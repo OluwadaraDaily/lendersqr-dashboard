@@ -42,7 +42,7 @@ function Users() {
         ))}
       </div>
       <div className="users-list">
-        <Table tableData={users.splice(0,10)} handleViewDetails={handleViewDetails}/>
+        <Table tableData={users} handleViewDetails={handleViewDetails}/>
       </div>
     </div>
   )
