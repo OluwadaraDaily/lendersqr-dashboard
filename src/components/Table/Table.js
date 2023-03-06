@@ -32,14 +32,15 @@ function Table({ tableData = [], handleViewDetails }) {
     canNextPage,
     canPreviousPage,
     previousPage,
-    pageOptions,
+    setPageSize,
     state,
     gotoPage,
     pageCount,
     headerGroups,
-    prepareRow } = tableInstance
+    prepareRow 
+  } = tableInstance
   
-  const { pageIndex } = state
+  const { pageIndex, pageSize } = state
 
 
   const filterIcon = React.createElement(BsFilter)
@@ -62,14 +63,12 @@ function Table({ tableData = [], handleViewDetails }) {
   }, [])
 
   useEffect(() => {
-    console.log('initialPageState =>', initialPageState)
     for(const i of pageNumbersArray) {
       initialPageState[i] = false
     }
     setActivePage(initialPageState)
     setActivePage(prevState => {
       prevState = prevState || {}
-      console.log('PREV STATE =>', prevState)
       prevState[Number(pageIndex) + 1] = true
       return {...prevState}
     })
@@ -139,12 +138,15 @@ function Table({ tableData = [], handleViewDetails }) {
       </table>
       <div className="below-table">
         <div className="items-shown">
-          <p>Page {pageIndex + 1} of {pageOptions.length}</p>
           <p>Showing</p>
-          <select>
-            <option value="100" selected>100</option>
+          <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+            {
+              [10, 25, 50, 100].map((pageSize, index) => (
+                <option key={index} value={pageSize}>{ pageSize }</option>
+              ))
+            }
           </select>
-          <p>out of 100</p>
+          <p>out of {pageSize * pageCount}</p>
         </div>
         <div className="navigate-table">
           <button onClick={() => previousPage()} disabled={!canPreviousPage}>{ previousArrow }</button>

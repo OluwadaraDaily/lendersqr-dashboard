@@ -81,6 +81,22 @@ table {
     display: flex;
     align-items: center;
     gap: .8rem;
+    font-family: 'Work Sans';
+    font-weight: 400;
+    p {
+      font-size: 1.3rem;
+      color: #213F7D;
+    }
+    select {
+      border: none;
+      background-color: rgba(33, 63, 125, 0.1);
+      color: #213F7D;
+      padding: .7rem;
+      padding-left: 0;
+      border-radius: .3rem;
+      outline: none;
+      font-family: 'Work Sans';
+    }
   }
   .navigate-table {
     display: flex;
