@@ -55,3 +55,29 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .login-section {
+    flex-direction: column;
+
+    .login-section__left, .login-section__right {
+      padding: 0;
+    }
+
+    .login-section__left {
+      .logo {
+        top: 3rem;
+        left: 2rem;
+        margin: 0;
+      }
+    }
+
+    .login-section__right {
+      width: 90%;
+      justify-content: flex-start;
+      .form {
+        width: 100%;
+      }
+    }
+  }
+}

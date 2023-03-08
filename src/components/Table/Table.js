@@ -37,7 +37,8 @@ function Table({ tableData = [], handleViewDetails }) {
     gotoPage,
     pageCount,
     headerGroups,
-    prepareRow 
+    prepareRow,
+    setGlobalFilter
   } = tableInstance
   
   const { pageIndex, pageSize } = state
@@ -94,48 +95,50 @@ function Table({ tableData = [], handleViewDetails }) {
 
   return (
     <>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')} <span className='filter-icon'><i>{filterIcon}</i></span></th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, index) => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                })}
-                <td className='more-options' onClick={() => handleMoreOptionsOnClick(index)}>
-                  <i>{moreOptions}</i>
-                  {moreOptionsStatus[index] &&
-                    <div className="more-options-menu">
-                      <div className='more-options__menu-item' onClick={() => handleViewDetails(row.cells[0].value)}>
-                        <img src={viewDetailsImg} alt="eye icon" height={15}/>
-                        <p>View Details</p>
-                      </div>
-                      <div className='more-options__menu-item'>
-                        <img src={blacklistUserImg} alt="blacklist user icon" height={15} />
-                        <p>Blacklist User</p>
-                      </div>
-                      <div className='more-options__menu-item'>
-                        <img src={activateUserImg} alt="activate user icon" height={15} />
-                        <p>Activate User</p>
-                      </div>
-                    </div>
-                  }
-                </td>
+      <div className="table-wrapper">
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')} <span className='filter-icon'><i>{filterIcon}</i></span></th>
+                ))}
               </tr>
-            )
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, index) => {
+              prepareRow(row)
+              return (
+                <tr {...row.getRowProps()} onClick={() => handleViewDetails(row.cells[0].value)}>
+                  {row.cells.map((cell) => {
+                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  })}
+                  <td className='more-options' onClick={() => handleMoreOptionsOnClick(index)}>
+                    <i>{moreOptions}</i>
+                    {moreOptionsStatus[index] &&
+                      <div className="more-options-menu">
+                        <div className='more-options__menu-item' onClick={() => handleViewDetails(row.cells[0].value)}>
+                          <img src={viewDetailsImg} alt="eye icon" height={15}/>
+                          <p>View Details</p>
+                        </div>
+                        <div className='more-options__menu-item'>
+                          <img src={blacklistUserImg} alt="blacklist user icon" height={15} />
+                          <p>Blacklist User</p>
+                        </div>
+                        <div className='more-options__menu-item'>
+                          <img src={activateUserImg} alt="activate user icon" height={15} />
+                          <p>Activate User</p>
+                        </div>
+                      </div>
+                    }
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
       <div className="below-table">
         <div className="items-shown">
           <p>Showing</p>
