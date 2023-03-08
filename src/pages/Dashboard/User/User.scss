@@ -34,6 +34,7 @@ h1.title {
 
   .title-section {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin: 1rem 0;
     h1.title {
@@ -169,6 +170,9 @@ h1.title {
     .user-details-section {
       padding: 2rem 0;
       border-bottom: 1px solid rgba(33, 63, 125, .2);
+      &:last-child {
+        border-bottom: none;
+      }
       h1.title {
         font-size: 1.4rem;
         color:#213F7D;
@@ -194,6 +198,41 @@ h1.title {
           }
         }
       }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  h1.title {
+    font-size: 1.4rem !important;
+  }
+  .user-container {
+    .image-holder {
+      height: 4rem !important;
+      width: 4rem !important;
+      img {
+      }
+    }
+    .account-details {
+      p.account-balance {
+        font-size: 1.4rem !important;
+      }
+      p.account-info {
+        font-size: .7rem !important;
+      }
+    }
+    .tabs-list {
+      li {
+        font-size: .8rem !important;
+      }
+    }
+
+    .user-details-section {
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
     }
   }
 }

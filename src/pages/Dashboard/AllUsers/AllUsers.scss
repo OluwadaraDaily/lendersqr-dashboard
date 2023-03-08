@@ -19,3 +19,22 @@
     padding-bottom: 8rem;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .user-section-container {
+
+    .user-analytics-cards {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+  }
+  .user-analytics-cards > div {
+    flex: 50%;
+  }
+  .users-list {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+}
