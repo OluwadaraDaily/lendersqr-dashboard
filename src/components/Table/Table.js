@@ -37,8 +37,7 @@ function Table({ tableData = [], handleViewDetails }) {
     gotoPage,
     pageCount,
     headerGroups,
-    prepareRow,
-    setGlobalFilter
+    prepareRow
   } = tableInstance
   
   const { pageIndex, pageSize } = state

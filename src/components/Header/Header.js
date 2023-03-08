@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Header.scss'
 import logo from '../../images/logo.svg'
 import miniLogo from '../../images/mini-logo.svg'
-import AppInput from '../AppInput/AppInput'
 import ProfileItem from '../ProfileItem/ProfileItem'
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";

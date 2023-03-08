@@ -2,7 +2,7 @@ import './DashboardLayout.scss'
 import Header from '../../components/Header/Header'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 function DashboardLayout() {
   const [showMenu, setShowMenu] = useState(false)
