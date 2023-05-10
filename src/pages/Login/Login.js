@@ -28,8 +28,8 @@ function Login() {
           <p className="subtext">Enter details to login</p>
         </div>
         <form className='form' onSubmit={handleSubmit}>
-          <AppInput placeholder='Email' inputType='email' />
-          <AppInput placeholder='Password' inputType='password' />
+          <AppInput placeholder='Email' inputType='email' readOnly value="test@testing.com" />
+          <AppInput placeholder='Password' inputType='password' readOnly value="testPassword" />
           <div className="forgot-password-link">
             <p>Forgot Password?</p>
           </div>

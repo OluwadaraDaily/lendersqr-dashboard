@@ -19,9 +19,6 @@ function Header({ showMenu, toggleMenu }) {
         <img src={logo} className="main-logo" alt="LendSqr Logo" />
         <img src={miniLogo} className="mini-logo" alt="LendSqr Logo" />
       </NavLink>
-      <div className="header-search-bar">
-        <input type="text" className="search" placeholder='Search for anything' />
-      </div>
       <nav className="nav-items">
         <NavLink to="/" className="docs-link">Docs</NavLink>
         <i className='notification-bell'>{ notificationVector }</i>

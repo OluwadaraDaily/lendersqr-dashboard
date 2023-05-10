@@ -5,11 +5,16 @@
     width: 100%;
     border: 1.5px solid #ccc;
     border-radius: .5rem;
-    
+    font-family: 'Avenir-Regular';
     &::placeholder {
       font-family: 'Avenir-Regular';
       color: #545F7D;
       font-size: 1.4rem;
+      opacity: .5;
+    }
+
+    &:read-only {
+      cursor: not-allowed;
       opacity: .5;
     }
   }

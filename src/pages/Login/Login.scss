@@ -44,6 +44,8 @@
       width: 85%;
       .forgot-password-link {
         margin-bottom: 2rem;
+        cursor: not-allowed;
+        opacity: .5;
         p {
           font-family: 'Avenir-Medium';
           text-transform: uppercase;
